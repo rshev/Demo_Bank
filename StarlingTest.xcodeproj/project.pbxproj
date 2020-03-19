@@ -18,6 +18,9 @@
 		64E141802424000E00AB4CFB /* TransactionFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1417F2424000E00AB4CFB /* TransactionFeed.swift */; };
 		64E141822424014200AB4CFB /* SavingsGoals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E141812424014200AB4CFB /* SavingsGoals.swift */; };
 		64E141842424027B00AB4CFB /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E141832424027B00AB4CFB /* Common.swift */; };
+		64E141872424032A00AB4CFB /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E141862424032A00AB4CFB /* API.swift */; };
+		64E141892424039500AB4CFB /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E141882424039500AB4CFB /* Endpoint.swift */; };
+		64E1418B242404ED00AB4CFB /* AccountEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1418A242404ED00AB4CFB /* AccountEndpoints.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +49,9 @@
 		64E1417F2424000E00AB4CFB /* TransactionFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFeed.swift; sourceTree = "<group>"; };
 		64E141812424014200AB4CFB /* SavingsGoals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsGoals.swift; sourceTree = "<group>"; };
 		64E141832424027B00AB4CFB /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		64E141862424032A00AB4CFB /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		64E141882424039500AB4CFB /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		64E1418A242404ED00AB4CFB /* AccountEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEndpoints.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				64E1417A2423FE6000AB4CFB /* Models */,
+				64E141852424031900AB4CFB /* API */,
 				64E1417B2423FE7D00AB4CFB /* Configuration.swift */,
 				64E141582423FD3800AB4CFB /* AppDelegate.swift */,
 				64E1415C2423FD3800AB4CFB /* ViewController.swift */,
@@ -117,6 +124,16 @@
 				64E141812424014200AB4CFB /* SavingsGoals.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		64E141852424031900AB4CFB /* API */ = {
+			isa = PBXGroup;
+			children = (
+				64E141862424032A00AB4CFB /* API.swift */,
+				64E141882424039500AB4CFB /* Endpoint.swift */,
+				64E1418A242404ED00AB4CFB /* AccountEndpoints.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,11 +239,14 @@
 			files = (
 				64E141842424027B00AB4CFB /* Common.swift in Sources */,
 				64E1415D2423FD3800AB4CFB /* ViewController.swift in Sources */,
+				64E1418B242404ED00AB4CFB /* AccountEndpoints.swift in Sources */,
 				64E141592423FD3800AB4CFB /* AppDelegate.swift in Sources */,
 				64E1417E2423FF4300AB4CFB /* Accounts.swift in Sources */,
+				64E141892424039500AB4CFB /* Endpoint.swift in Sources */,
 				64E1417C2423FE7D00AB4CFB /* Configuration.swift in Sources */,
 				64E141802424000E00AB4CFB /* TransactionFeed.swift in Sources */,
 				64E141822424014200AB4CFB /* SavingsGoals.swift in Sources */,
+				64E141872424032A00AB4CFB /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
