@@ -69,7 +69,9 @@ final class API: APIProvider {
 
 private enum Constant {
     static let authorizationKey = "Authorization"
+    static let contentTypeKey = "Content-Type"
     static let bearerValue = "Bearer"
+    static let applicationJsonValue = "application/json; charset=utf-8"
 }
 
 extension Endpoint {
@@ -78,6 +80,7 @@ extension Endpoint {
         accessToken: String
     ) throws -> URLRequest {
         let url = baseURL.appendingPathComponent(urlPath)
+        let request = try getRequest()
 
         var urlRequest: URLRequest
 
@@ -87,6 +90,7 @@ extension Endpoint {
         case .body(let requestBody):
             urlRequest = URLRequest(url: url)
             urlRequest.httpBody = requestBody
+            urlRequest.setValue(Constant.applicationJsonValue, forHTTPHeaderField: Constant.contentTypeKey)
         case .queryParameters(let items):
             let url = try url.replacingQueryItems(items)
             urlRequest = URLRequest(url: url)

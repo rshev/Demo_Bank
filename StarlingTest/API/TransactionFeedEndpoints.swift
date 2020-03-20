@@ -26,7 +26,8 @@ struct GetTransactionFeedEndpoint: Endpoint {
     }
 
     let httpMethod: HTTPMethod = .GET
-    var request: Request? {
+
+    func getRequest() throws -> Request? {
         let date = dateFormatter.string(from: changesSince)
         return .queryParameters([
             URLQueryItem(name: Constant.changesSince, value: date)

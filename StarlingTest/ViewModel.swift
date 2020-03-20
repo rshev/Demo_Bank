@@ -37,6 +37,8 @@ final class ViewModel {
     }
     private var viewData: ViewData = .initial
 
+    private var savingsGoalAmount: CurrencyAndAmount?
+
     private weak var presenter: ViewModelPresenter?
 
     func load(presenter: ViewModelPresenter) {
@@ -95,6 +97,7 @@ final class ViewModel {
     }
 
     private func progress(withAmount amount: CurrencyAndAmount) {
+        savingsGoalAmount = amount
         propagateViewData(
             appendingMessage: "💰 Ready to set aside \(amount.readableDescription)",
             changingCTAState: .transfer
@@ -102,7 +105,27 @@ final class ViewModel {
     }
 
     private func transferToSavingsGoal() {
-
+        guard let amount = savingsGoalAmount else {
+            return
+        }
+        bankManager.transferToSavingsGoal(amount: amount) { [weak self] (result) in
+            switch result {
+            case .success(let savingsGoal):
+                self?.propagateViewData(
+                    appendingMessage:
+                    """
+                    💸 Transferred successfully \(amount.readableDescription)
+                    into savings goal named "\(savingsGoal.savingsGoalName)"
+                    savings goal UID "\(savingsGoal.savingsGoalUid)"
+                    transfer UID "\(savingsGoal.transferUid ?? "")"
+                    🎉
+                    """,
+                    changingCTAState: .startOver
+                )
+            case .failure(let error):
+                self?.handle(error: error)
+            }
+        }
     }
 }
 

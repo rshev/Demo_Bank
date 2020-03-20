@@ -10,6 +10,8 @@ import Foundation
 
 enum BankManagerError: Error {
     case noAccountsFound
+    case failureToCreateSavingsGoal
+    case failureToTransferIntoSavingsGoal
 }
 
 final class BankManager {
@@ -22,6 +24,8 @@ final class BankManager {
     }
 
     private var account: Account?
+
+    // MARK: - Getting accounts, transaction feed and calculating savings goal
 
     func getRoundableAmount(completion: @escaping CompletionWithResult<CurrencyAndAmount>) {
         if let account = account {
@@ -92,7 +96,80 @@ final class BankManager {
         )
         completion(.success(currencyAndAmount))
     }
+
+    // MARK: - Creating a savings goal, transferring money
+
+    struct SavingsGoal {
+        var savingsGoalName: String
+        var savingsGoalUid: SavingsGoalUid
+        var transferUid: TransferUid?
+    }
+
+    func transferToSavingsGoal(
+        amount: CurrencyAndAmount,
+        completion: @escaping CompletionWithResult<SavingsGoal>
+    ) {
+        guard let account = account else {
+            return completion(.failure(BankManagerError.noAccountsFound))
+        }
+
+        let name = "Savings Goal \(UUID().uuidString)"
+        let createSavingsGoalEndpoint = CreateSavingsGoalEndpoint(
+            accountUid: account.accountUid,
+            name: name,
+            currency: account.currency
+        )
+        api.request(createSavingsGoalEndpoint) { [weak self] (result) in
+            switch result {
+            case .success(let response) where response.success:
+                self?.transferMoney(
+                    amount: amount,
+                    intoSavingsGoal: SavingsGoal(
+                        savingsGoalName: name,
+                        savingsGoalUid: response.savingsGoalUid
+                    ),
+                    completion: completion
+                )
+            case .success:
+                completion(.failure(BankManagerError.failureToCreateSavingsGoal))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    private func transferMoney(
+        amount: CurrencyAndAmount,
+        intoSavingsGoal savingsGoal: SavingsGoal,
+        completion: @escaping CompletionWithResult<SavingsGoal>
+    ) {
+        guard let account = account else {
+            return completion(.failure(BankManagerError.noAccountsFound))
+        }
+
+        let transferUid = UUID().uuidString
+        let addMoneyIntoSavingsGoalEndpoint = AddMoneyIntoSavingsGoalEndpoint(
+            accountUid: account.accountUid,
+            savingsGoalUid: savingsGoal.savingsGoalUid,
+            transferUid: transferUid,
+            currencyAndAmount: amount
+        )
+        api.request(addMoneyIntoSavingsGoalEndpoint) { (result) in
+            switch result {
+            case .success(let response) where response.success:
+                var savingsGoal = savingsGoal
+                savingsGoal.transferUid = response.transferUid
+                completion(.success(savingsGoal))
+            case .success:
+                completion(.failure(BankManagerError.failureToTransferIntoSavingsGoal))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 }
+
+// MARK: - Extensions
 
 private extension CurrencyAndAmount {
     var minorUnitsRoundUpToHundred: Int {

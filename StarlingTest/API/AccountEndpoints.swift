@@ -13,5 +13,8 @@ struct GetAccountsEndpoint: Endpoint {
 
     let urlPath = "/api/v2/accounts"
     let httpMethod: HTTPMethod = .GET
-    let request: Request? = nil
+
+    func getRequest() throws -> Request? {
+        return nil
+    }
 }

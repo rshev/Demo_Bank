@@ -13,7 +13,7 @@ protocol Endpoint {
 
     var urlPath: String { get }
     var httpMethod: HTTPMethod { get }
-    var request: Request? { get }
+    func getRequest() throws -> Request?
 }
 
 enum Request {

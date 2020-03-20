@@ -24,6 +24,7 @@
 		64E1418D24243A1500AB4CFB /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1418C24243A1500AB4CFB /* ViewModel.swift */; };
 		64E1418F2424439300AB4CFB /* TransactionFeedEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1418E2424439300AB4CFB /* TransactionFeedEndpoints.swift */; };
 		64E141AE2425419900AB4CFB /* BankManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E141AD2425419900AB4CFB /* BankManager.swift */; };
+		64E141B024257ECE00AB4CFB /* SavingsGoalsEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E141AF24257ECE00AB4CFB /* SavingsGoalsEndpoints.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		64E1418C24243A1500AB4CFB /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		64E1418E2424439300AB4CFB /* TransactionFeedEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFeedEndpoints.swift; sourceTree = "<group>"; };
 		64E141AD2425419900AB4CFB /* BankManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankManager.swift; sourceTree = "<group>"; };
+		64E141AF24257ECE00AB4CFB /* SavingsGoalsEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsGoalsEndpoints.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 				64E141882424039500AB4CFB /* Endpoint.swift */,
 				64E1418A242404ED00AB4CFB /* AccountEndpoints.swift */,
 				64E1418E2424439300AB4CFB /* TransactionFeedEndpoints.swift */,
+				64E141AF24257ECE00AB4CFB /* SavingsGoalsEndpoints.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				64E1417E2423FF4300AB4CFB /* Accounts.swift in Sources */,
 				64E141892424039500AB4CFB /* Endpoint.swift in Sources */,
 				64E1417C2423FE7D00AB4CFB /* Configuration.swift in Sources */,
+				64E141B024257ECE00AB4CFB /* SavingsGoalsEndpoints.swift in Sources */,
 				64E141802424000E00AB4CFB /* TransactionFeed.swift in Sources */,
 				64E141822424014200AB4CFB /* SavingsGoals.swift in Sources */,
 				64E141872424032A00AB4CFB /* API.swift in Sources */,
