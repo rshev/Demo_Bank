@@ -21,6 +21,7 @@
 		64E141872424032A00AB4CFB /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E141862424032A00AB4CFB /* API.swift */; };
 		64E141892424039500AB4CFB /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E141882424039500AB4CFB /* Endpoint.swift */; };
 		64E1418B242404ED00AB4CFB /* AccountEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1418A242404ED00AB4CFB /* AccountEndpoints.swift */; };
+		64E1418D24243A1500AB4CFB /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1418C24243A1500AB4CFB /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		64E141862424032A00AB4CFB /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		64E141882424039500AB4CFB /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		64E1418A242404ED00AB4CFB /* AccountEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEndpoints.swift; sourceTree = "<group>"; };
+		64E1418C24243A1500AB4CFB /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				64E1417B2423FE7D00AB4CFB /* Configuration.swift */,
 				64E141582423FD3800AB4CFB /* AppDelegate.swift */,
 				64E1415C2423FD3800AB4CFB /* ViewController.swift */,
+				64E1418C24243A1500AB4CFB /* ViewModel.swift */,
 				64E1415E2423FD3800AB4CFB /* Main.storyboard */,
 				64E141612423FD3D00AB4CFB /* Assets.xcassets */,
 				64E141632423FD3D00AB4CFB /* LaunchScreen.storyboard */,
@@ -240,6 +243,7 @@
 				64E141842424027B00AB4CFB /* Common.swift in Sources */,
 				64E1415D2423FD3800AB4CFB /* ViewController.swift in Sources */,
 				64E1418B242404ED00AB4CFB /* AccountEndpoints.swift in Sources */,
+				64E1418D24243A1500AB4CFB /* ViewModel.swift in Sources */,
 				64E141592423FD3800AB4CFB /* AppDelegate.swift in Sources */,
 				64E1417E2423FF4300AB4CFB /* Accounts.swift in Sources */,
 				64E141892424039500AB4CFB /* Endpoint.swift in Sources */,

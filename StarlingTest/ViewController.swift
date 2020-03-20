@@ -9,12 +9,38 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet var ctaButton: UIButton!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet var textView: UITextView!
+
+    private lazy var viewModel = ViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        viewModel.load(presenter: self)
     }
 
-
+    @IBAction func didTapCTAButton() {
+        viewModel.ctaRequested()
+    }
 }
 
+extension ViewController: ViewModelPresenter {
+    func propagate(viewData: ViewModel.ViewData) {
+        textView.text = viewData.loggerContent
+
+        switch viewData.ctaState {
+        case .loading:
+            activityIndicator.isHidden = false
+            ctaButton.isHidden = true
+        case .startOver:
+            activityIndicator.isHidden = false
+            ctaButton.isHidden = true
+            ctaButton.setTitle("Start Over", for: .normal)
+        case .transfer:
+            activityIndicator.isHidden = false
+            ctaButton.isHidden = true
+            ctaButton.setTitle("Transfer to savings goal", for: .normal)
+        }
+    }
+}
