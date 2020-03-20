@@ -13,12 +13,15 @@ protocol ViewModelPresenter: AnyObject {
 }
 
 final class ViewModel {
-    private let api: API
+    private let bankManager: BankManager
+    private let propagateQueue: DispatchQueue
 
     init(
-        api: API = API()
+        bankManager: BankManager = BankManager(),
+        propagateQueue: DispatchQueue = .main
     ) {
-        self.api = api
+        self.bankManager = bankManager
+        self.propagateQueue = propagateQueue
     }
 
     struct ViewData {
@@ -42,21 +45,27 @@ final class ViewModel {
     }
 
     func ctaRequested() {
-
+        switch viewData.ctaState {
+        case .loading:
+            break
+        case .startOver:
+            startOver()
+        case .transfer:
+            transferToSavingsGoal()
+        }
     }
 
     private func startOver() {
         viewData = .initial
         propagateViewData(
-            appendingMessage: "📚 Requesting accounts...",
+            appendingMessage: "📚 Requesting accounts and transactions...",
             changingCTAState: .loading
         )
 
-        let getAccounts = GetAccountsEndpoint()
-        api.request(getAccounts) { [weak self] (result) in
+        bankManager.getRoundableAmount { [weak self] (result) in
             switch result {
-            case .success(let accounts):
-                self?.progress(withAccounts: accounts)
+            case .success(let amount):
+                self?.progress(withAmount: amount)
             case .failure(let error):
                 self?.handle(error: error)
             }
@@ -73,17 +82,32 @@ final class ViewModel {
         if let ctaState = ctaState {
             viewData.ctaState = ctaState
         }
-        presenter?.propagate(viewData: viewData)
+        propagateQueue.async { [weak presenter, viewData] in
+            presenter?.propagate(viewData: viewData)
+        }
     }
 
     private func handle(error: Error) {
         propagateViewData(
-            appendingMessage: "❌ Error received: \(error.localizedDescription)",
+            appendingMessage: "❌ Error received: \(error)",
             changingCTAState: .startOver
         )
     }
 
-    private func progress(withAccounts accounts: Accounts) {
-        
+    private func progress(withAmount amount: CurrencyAndAmount) {
+        propagateViewData(
+            appendingMessage: "💰 Ready to set aside \(amount.readableDescription)",
+            changingCTAState: .transfer
+        )
+    }
+
+    private func transferToSavingsGoal() {
+
+    }
+}
+
+private extension CurrencyAndAmount {
+    var readableDescription: String {
+        return "\(Double(minorUnits) / 100.0) \(currency)"
     }
 }

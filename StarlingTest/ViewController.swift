@@ -34,12 +34,12 @@ extension ViewController: ViewModelPresenter {
             activityIndicator.isHidden = false
             ctaButton.isHidden = true
         case .startOver:
-            activityIndicator.isHidden = false
-            ctaButton.isHidden = true
+            activityIndicator.isHidden = true
+            ctaButton.isHidden = false
             ctaButton.setTitle("Start Over", for: .normal)
         case .transfer:
-            activityIndicator.isHidden = false
-            ctaButton.isHidden = true
+            activityIndicator.isHidden = true
+            ctaButton.isHidden = false
             ctaButton.setTitle("Transfer to savings goal", for: .normal)
         }
     }

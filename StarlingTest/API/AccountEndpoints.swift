@@ -9,10 +9,9 @@
 import Foundation
 
 struct GetAccountsEndpoint: Endpoint {
-    typealias Request = String
     typealias Response = Accounts
 
     let urlPath = "/api/v2/accounts"
     let httpMethod: HTTPMethod = .GET
-    let requestBody: Request? = nil
+    let request: Request? = nil
 }

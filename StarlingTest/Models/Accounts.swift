@@ -15,4 +15,5 @@ struct Accounts: Codable {
 struct Account: Codable {
     var accountUid: AccountUid
     var defaultCategory: CategoryUid
+    var currency: Currency
 }

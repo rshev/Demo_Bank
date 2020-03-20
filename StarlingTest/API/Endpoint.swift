@@ -9,15 +9,25 @@
 import Foundation
 
 protocol Endpoint {
-    associatedtype Request: Codable
     associatedtype Response: Codable
 
     var urlPath: String { get }
     var httpMethod: HTTPMethod { get }
-    var requestBody: Request? { get }
+    var request: Request? { get }
+}
+
+enum Request {
+    case queryParameters([URLQueryItem])
+    case body(Data)
 }
 
 enum HTTPMethod: String {
     case GET
     case PUT
+}
+
+extension Data {
+    init<E: Encodable>(jsonEncoded encodable: E) throws {
+        self = try JSONEncoder().encode(encodable)
+    }
 }

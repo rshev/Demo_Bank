@@ -12,7 +12,9 @@ typealias AccountUid = String
 typealias CategoryUid = String
 typealias SavingsGoalUid = String
 typealias TransferUid = String
+typealias Currency = String
 
 struct CurrencyAndAmount: Codable {
     var minorUnits: Int
+    var currency: Currency
 }

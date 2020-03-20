@@ -8,6 +8,8 @@
 
 import Foundation
 
+typealias CompletionWithResult<Success> = (Result<Success, Error>) -> Void
+
 protocol APIProvider: AnyObject {
     func request<E: Endpoint>(_ endpoint: E, completion: @escaping (Result<E.Response, Error>) -> Void)
 }
@@ -15,6 +17,7 @@ protocol APIProvider: AnyObject {
 enum APIError: Error {
     case statusCodeNotSuccess
     case noResponseBody
+    case cannotFormatURL
 }
 
 final class API: APIProvider {
@@ -34,7 +37,7 @@ final class API: APIProvider {
 
     func request<E: Endpoint>(
         _ endpoint: E,
-        completion: @escaping (Result<E.Response, Error>) -> Void
+        completion: @escaping CompletionWithResult<E.Response>
     ) {
         do {
             let request = try endpoint.urlRequest(withBaseURL: baseURL, accessToken: accessToken)
@@ -75,12 +78,21 @@ extension Endpoint {
         accessToken: String
     ) throws -> URLRequest {
         let url = baseURL.appendingPathComponent(urlPath)
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = httpMethod.rawValue
-        if let requestBody = requestBody {
-            let requestBodyData = try JSONEncoder().encode(requestBody)
-            urlRequest.httpBody = requestBodyData
+
+        var urlRequest: URLRequest
+
+        switch request {
+        case .none:
+            urlRequest = URLRequest(url: url)
+        case .body(let requestBody):
+            urlRequest = URLRequest(url: url)
+            urlRequest.httpBody = requestBody
+        case .queryParameters(let items):
+            let url = try url.replacingQueryItems(items)
+            urlRequest = URLRequest(url: url)
         }
+
+        urlRequest.httpMethod = httpMethod.rawValue
         urlRequest.setValue("\(Constant.bearerValue) \(accessToken)", forHTTPHeaderField: Constant.authorizationKey)
         return urlRequest
     }
@@ -92,5 +104,20 @@ private extension URLResponse {
             return false
         }
         return (200...299).contains(httpURLResponse.statusCode)
+    }
+}
+
+private extension URL {
+    func replacingQueryItems(_ queryItems: [URLQueryItem]) throws -> URL {
+        guard
+            var urlComponents = URLComponents(url: self, resolvingAgainstBaseURL: false)
+        else {
+            throw APIError.cannotFormatURL
+        }
+        urlComponents.queryItems = queryItems
+        guard let url = urlComponents.url else {
+            throw APIError.cannotFormatURL
+        }
+        return url
     }
 }
