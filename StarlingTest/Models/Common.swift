@@ -8,6 +8,8 @@
 
 import Foundation
 
+// Could be structs wrapping Strings to be strongly-typed,
+// but for simplicity these are just typealiases
 typealias AccountUid = String
 typealias CategoryUid = String
 typealias SavingsGoalUid = String
