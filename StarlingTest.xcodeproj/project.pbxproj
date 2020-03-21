@@ -12,7 +12,6 @@
 		64E141602423FD3800AB4CFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64E1415E2423FD3800AB4CFB /* Main.storyboard */; };
 		64E141622423FD3D00AB4CFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64E141612423FD3D00AB4CFB /* Assets.xcassets */; };
 		64E141652423FD3D00AB4CFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64E141632423FD3D00AB4CFB /* LaunchScreen.storyboard */; };
-		64E141702423FD3E00AB4CFB /* StarlingTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1416F2423FD3E00AB4CFB /* StarlingTestTests.swift */; };
 		64E1417C2423FE7D00AB4CFB /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1417B2423FE7D00AB4CFB /* Configuration.swift */; };
 		64E1417E2423FF4300AB4CFB /* Accounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1417D2423FF4300AB4CFB /* Accounts.swift */; };
 		64E141802424000E00AB4CFB /* TransactionFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1417F2424000E00AB4CFB /* TransactionFeed.swift */; };
@@ -25,6 +24,7 @@
 		64E1418F2424439300AB4CFB /* TransactionFeedEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E1418E2424439300AB4CFB /* TransactionFeedEndpoints.swift */; };
 		64E141AE2425419900AB4CFB /* BankManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E141AD2425419900AB4CFB /* BankManager.swift */; };
 		64E141B024257ECE00AB4CFB /* SavingsGoalsEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E141AF24257ECE00AB4CFB /* SavingsGoalsEndpoints.swift */; };
+		64E141B22425A1D300AB4CFB /* ViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E141B12425A1D300AB4CFB /* ViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +46,6 @@
 		64E141642423FD3D00AB4CFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		64E141662423FD3D00AB4CFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64E1416B2423FD3E00AB4CFB /* StarlingTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StarlingTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		64E1416F2423FD3E00AB4CFB /* StarlingTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarlingTestTests.swift; sourceTree = "<group>"; };
 		64E141712423FD3E00AB4CFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		64E1417B2423FE7D00AB4CFB /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		64E1417D2423FF4300AB4CFB /* Accounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Accounts.swift; sourceTree = "<group>"; };
@@ -60,6 +59,7 @@
 		64E1418E2424439300AB4CFB /* TransactionFeedEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionFeedEndpoints.swift; sourceTree = "<group>"; };
 		64E141AD2425419900AB4CFB /* BankManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankManager.swift; sourceTree = "<group>"; };
 		64E141AF24257ECE00AB4CFB /* SavingsGoalsEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsGoalsEndpoints.swift; sourceTree = "<group>"; };
+		64E141B12425A1D300AB4CFB /* ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +119,7 @@
 		64E1416E2423FD3E00AB4CFB /* StarlingTestTests */ = {
 			isa = PBXGroup;
 			children = (
-				64E1416F2423FD3E00AB4CFB /* StarlingTestTests.swift */,
+				64E141B12425A1D300AB4CFB /* ViewModelTests.swift */,
 				64E141712423FD3E00AB4CFB /* Info.plist */,
 			);
 			path = StarlingTestTests;
@@ -209,6 +209,7 @@
 					};
 					64E1416A2423FD3E00AB4CFB = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
 						TestTargetID = 64E141542423FD3800AB4CFB;
 					};
 				};
@@ -278,7 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				64E141702423FD3E00AB4CFB /* StarlingTestTests.swift in Sources */,
+				64E141B22425A1D300AB4CFB /* ViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +468,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JTH6K53472;
 				INFOPLIST_FILE = StarlingTestTests/Info.plist;
@@ -478,6 +480,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rshev.StarlingTestTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/StarlingTest.app/StarlingTest";
@@ -489,6 +492,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JTH6K53472;
 				INFOPLIST_FILE = StarlingTestTests/Info.plist;

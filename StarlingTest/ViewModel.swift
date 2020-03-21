@@ -13,11 +13,11 @@ protocol ViewModelPresenter: AnyObject {
 }
 
 final class ViewModel {
-    private let bankManager: BankManager
+    private let bankManager: BankManagerProvider
     private let propagateQueue: DispatchQueue
 
     init(
-        bankManager: BankManager = BankManager(),
+        bankManager: BankManagerProvider = BankManager(),
         propagateQueue: DispatchQueue = .main
     ) {
         self.bankManager = bankManager

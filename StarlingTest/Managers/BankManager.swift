@@ -14,11 +14,19 @@ enum BankManagerError: Error {
     case failureToTransferIntoSavingsGoal
 }
 
-final class BankManager {
-    private let api: API
+protocol BankManagerProvider: AnyObject {
+    func getRoundableAmount(completion: @escaping CompletionWithResult<CurrencyAndAmount>)
+    func transferToSavingsGoal(
+        amount: CurrencyAndAmount,
+        completion: @escaping CompletionWithResult<BankManager.SavingsGoal>
+    )
+}
+
+final class BankManager: BankManagerProvider {
+    private let api: APIProvider
 
     init(
-        api: API = API()
+        api: APIProvider = API()
     ) {
         self.api = api
     }
