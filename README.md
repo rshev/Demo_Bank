@@ -1,5 +1,7 @@
 #  Starling test exercise by Roman Shevtsov
 
+Please see original requirements in [pdf](Starling_Bank_Engineering__Technical_Challenge_.pdf)
+
 ## How to run
 - Xcode 11.3.1
 - Please insert your `apiAccessToken` in `Configuration.swift` 
