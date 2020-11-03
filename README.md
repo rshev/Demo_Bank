@@ -1,5 +1,7 @@
 #  Starling test exercise by Roman Shevtsov
 
+![demo gif](demo.gif)
+
 Please see original requirements in [pdf](Starling_Bank_Engineering__Technical_Challenge_.pdf)
 
 ## How to run
